@@ -3,10 +3,768 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
+  <title>Xuelu Feng | Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17201c;
+      --muted: #65716b;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --line: #dfe6df;
+      --teal: #1d7c76;
+      --coral: #c7674d;
+      --green: #6a8f49;
+      --graphite: #27312f;
+      --shadow: 0 24px 70px rgba(28, 41, 36, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--teal);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2vw, 1.8rem);
+      letter-spacing: 0;
+    }
+
+    .brand p {
+      margin: 1px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-strip a,
+    .contact-strip span {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      padding: 7px 10px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .intro-copy {
+      padding: clamp(28px, 4vw, 54px) 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .intro-copy h2 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .intro-copy p:last-child {
+      max-width: 680px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.16rem);
+    }
+
+    .visual-panel {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #dfe7df;
+      box-shadow: var(--shadow);
+    }
+
+    .visual-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .visual-caption {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      left: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.84);
+      color: var(--graphite);
+      padding: 12px 14px;
+      backdrop-filter: blur(12px);
+      font-size: 0.86rem;
+    }
+
+    .section-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .tab-card {
+      min-height: 210px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .tab-card:hover,
+    .tab-card:focus-visible,
+    .tab-card[aria-expanded="true"] {
+      border-color: var(--teal);
+      box-shadow: 0 18px 48px rgba(20, 96, 89, 0.13);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .tab-card[data-panel="portfolio"] {
+      background: #f6fbfa;
+    }
+
+    .tab-card[data-panel="future"] {
+      background: #fff9f4;
+    }
+
+    .tab-kicker {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tab-card strong {
+      display: block;
+      margin-top: 18px;
+      font-size: clamp(1.55rem, 3vw, 2.45rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .tab-card p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .tab-arrow {
+      align-self: flex-end;
+      color: var(--coral);
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .detail-panel {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      min-height: 560px;
+    }
+
+    .detail-panel.is-active {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+    }
+
+    .side-nav {
+      border-right: 1px solid var(--line);
+      background: #f6f7f3;
+      padding: 20px;
+    }
+
+    .side-nav h3 {
+      margin: 0 0 16px;
+      font-size: 1rem;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 11px 0;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(101, 113, 107, 0.18);
+      font-size: 0.95rem;
+    }
+
+    .side-nav a:hover,
+    .side-nav a:focus-visible {
+      color: var(--teal);
+      outline: none;
+    }
+
+    .panel-content {
+      padding: clamp(24px, 4vw, 42px);
+    }
+
+    .content-block {
+      padding-bottom: 36px;
+      margin-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .content-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .content-block h3 {
+      margin: 0 0 14px;
+      font-size: clamp(1.35rem, 2.6vw, 2rem);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .timeline,
+    .project-list,
+    .skill-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .entry,
+    .project,
+    .skill-group,
+    .future-note {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .entry-head,
+    .project-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .entry h4,
+    .project h4,
+    .skill-group h4 {
+      margin: 0;
+      font-size: 1.04rem;
+    }
+
+    .meta {
+      color: var(--teal);
+      font-size: 0.9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 19px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 7px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .project-thumb {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(29, 124, 118, 0.86), rgba(39, 49, 47, 0.9)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 16px);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .project:nth-child(2) .project-thumb {
+      background:
+        linear-gradient(135deg, rgba(199, 103, 77, 0.9), rgba(57, 81, 68, 0.92)),
+        radial-gradient(circle at 65% 28%, rgba(255, 255, 255, 0.22), transparent 26%);
+    }
+
+    .project:nth-child(3) .project-thumb {
+      background:
+        linear-gradient(135deg, rgba(106, 143, 73, 0.9), rgba(31, 52, 75, 0.9)),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent);
+    }
+
+    .project:nth-child(4) .project-thumb {
+      background:
+        linear-gradient(135deg, rgba(45, 79, 123, 0.9), rgba(29, 124, 118, 0.86)),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 20px);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .project-tags span,
+    .skill-group span {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      color: var(--graphite);
+      background: #f8faf6;
+      padding: 5px 8px;
+      font-size: 0.82rem;
+    }
+
+    .skill-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .skill-group p {
+      margin: 12px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .future-note {
+      max-width: 760px;
+      background: #fffaf6;
+    }
+
+    .future-note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .intro-grid,
+      .detail-panel.is-active {
+        grid-template-columns: 1fr;
+      }
+
+      .section-tabs,
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-nav {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .side-nav a {
+        display: inline-block;
+        margin-right: 18px;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-shell {
+        width: min(100% - 24px, 1180px);
+        padding-top: 16px;
+      }
+
+      .topbar,
+      .entry-head,
+      .project-head,
+      .visual-caption {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-strip {
+        justify-content: flex-start;
+      }
+
+      .tab-card {
+        min-height: 180px;
+      }
+
+      .meta {
+        white-space: normal;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>Welcome to my site.</p>
+  <main class="site-shell">
+    <header class="topbar" aria-label="Site header">
+      <a class="brand" href="#home" aria-label="Xuelu Feng home">
+        <span class="brand-mark">XF</span>
+        <div>
+          <h1>Xuelu Feng</h1>
+          <p>Full stack developer | Computer science and AI</p>
+        </div>
+      </a>
+      <div class="contact-strip" aria-label="Contact details">
+        <a href="mailto:fengxu@oregonstate.edu">fengxu@oregonstate.edu</a>
+        <a href="tel:+15419087324">(541) 908-7324</a>
+        <span>F-1 OPT</span>
+      </div>
+    </header>
+
+    <section class="intro-grid" id="home">
+      <div class="intro-copy">
+        <p class="eyebrow">Portfolio home</p>
+        <h2>Building practical software for research, data, and interactive systems.</h2>
+        <p>
+          I am a computer science graduate student at Oregon State University with full stack, AI,
+          database, and game development experience. Choose a section below to expand the details.
+        </p>
+      </div>
+      <figure class="visual-panel">
+        <img src="assets/portfolio-workbench.png" alt="Technical portfolio workspace with laptop, development materials, and clean desk lighting">
+        <figcaption class="visual-caption">
+          <span>React, ASP.NET Core, SQL, Python, PyTorch</span>
+          <strong>Research + product systems</strong>
+        </figcaption>
+      </figure>
+    </section>
+
+    <nav class="section-tabs" aria-label="Portfolio sections">
+      <button class="tab-card" type="button" data-panel="about" aria-expanded="true" aria-controls="about-panel">
+        <span>
+          <span class="tab-kicker">01</span>
+          <strong>About Me</strong>
+          <p>Intro, education, work experience, projects, and technical skills from my resume.</p>
+        </span>
+        <span class="tab-arrow" aria-hidden="true">-&gt;</span>
+      </button>
+      <button class="tab-card" type="button" data-panel="portfolio" aria-expanded="false" aria-controls="portfolio-panel">
+        <span>
+          <span class="tab-kicker">02</span>
+          <strong>Portfolio</strong>
+          <p>Project highlights from research apps, AI classification, cloud APIs, and simulation work.</p>
+        </span>
+        <span class="tab-arrow" aria-hidden="true">-&gt;</span>
+      </button>
+      <button class="tab-card" type="button" data-panel="future" aria-expanded="false" aria-controls="future-panel">
+        <span>
+          <span class="tab-kicker">03</span>
+          <strong>Future Space</strong>
+          <p>An open area for writing, experiments, coursework, photography, or anything you choose later.</p>
+        </span>
+        <span class="tab-arrow" aria-hidden="true">-&gt;</span>
+      </button>
+    </nav>
+
+    <section class="detail-panel is-active" id="about-panel" data-detail-panel="about" aria-labelledby="about-title">
+      <aside class="side-nav">
+        <h3 id="about-title">About Me</h3>
+        <a href="#intro">Intro</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Work Experience</a>
+        <a href="#resume-projects">Projects</a>
+        <a href="#skills">Skills</a>
+      </aside>
+      <div class="panel-content">
+        <section class="content-block" id="intro">
+          <h3>Intro</h3>
+          <p class="lead">
+            I focus on full stack systems, AI-powered data workflows, and interactive applications.
+            My work spans React interfaces, ASP.NET Core and Express APIs, relational databases,
+            PyTorch models, and 3D simulation pipelines.
+          </p>
+        </section>
+
+        <section class="content-block" id="education">
+          <h3>Education</h3>
+          <div class="timeline">
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Oregon State University</h4>
+                <span class="meta">Corvallis, Oregon</span>
+              </div>
+              <ul>
+                <li>Master of Engineering in Computer Science, expected Jun. 2026.</li>
+                <li>Minor in Artificial Intelligence, expected Jun. 2026.</li>
+                <li>Bachelor of Science in Computer Science, Jun. 2023.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-block" id="experience">
+          <h3>Work Experience</h3>
+          <div class="timeline">
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Full Stack Development, Tanguay Lab</h4>
+                <span class="meta">Jan. 2025 - Present</span>
+              </div>
+              <ul>
+                <li>Built and deployed a React and ASP.NET Core application for zebrafish laboratory XML data processing and MariaDB workflows used by 20+ researchers.</li>
+                <li>Redesigned the database schema with dimensional and fact-based models, then developed C# REST APIs that improved assay matching and metadata processing performance by 60%.</li>
+                <li>Implemented frontend validation and backend API error handling to make request failures and workflow pipelines easier to troubleshoot.</li>
+              </ul>
+            </article>
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Full Stack Development, Retro Next Door</h4>
+                <span class="meta">Oct. 2023 - Jun. 2024</span>
+              </div>
+              <ul>
+                <li>Led a full stack inventory and sales management system for a retro gaming business using SQL, JavaScript, and Express.js.</li>
+                <li>Normalized the SQL database schema for user management, order history, and historical pricing analytics.</li>
+                <li>Delivered customer-facing web platform updates that improved inventory browsing and business accessibility.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-block" id="resume-projects">
+          <h3>Projects</h3>
+          <div class="project-list">
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Dasher Blitz, OSU Capstone</h4>
+                <span class="meta">Sep. 2022 - Jun. 2023</span>
+              </div>
+              <p class="lead">Vehicle driving simulation focused on collision detection, avoidance systems, realistic physics, Blender assets, Unreal Engine Blueprints, HUD systems, and customization features.</p>
+            </article>
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Zebrafish Phenotype Classification</h4>
+                <span class="meta">Jan. 2026 - Mar. 2026</span>
+              </div>
+              <p class="lead">PyTorch and ResNet-based deep learning workflow for zebrafish phenotype and mortality classification from high throughput brightfield imaging data, reaching a 96% F1 score.</p>
+            </article>
+            <article class="entry">
+              <div class="entry-head">
+                <h4>Tarpaulin, Cloud Development Project</h4>
+                <span class="meta">Oct. 2024 - Jan. 2025</span>
+              </div>
+              <p class="lead">REST APIs for a course management site with Docker deployment, JWT authentication, role-based authorization, and backend endpoints that automated 70% of information gathering.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-block" id="skills">
+          <h3>Key Skills</h3>
+          <div class="skill-grid">
+            <article class="skill-group">
+              <h4>Languages</h4>
+              <p><span>C/C++</span><span>Python</span><span>JavaScript</span><span>Kotlin</span><span>C#</span><span>SQL</span><span>HTML/CSS</span><span>Swift</span></p>
+            </article>
+            <article class="skill-group">
+              <h4>Frameworks</h4>
+              <p><span>React</span><span>ASP.NET Core</span><span>Express.js</span><span>Django</span><span>PyTorch</span><span>TensorFlow</span></p>
+            </article>
+            <article class="skill-group">
+              <h4>Tools</h4>
+              <p><span>Git</span><span>Linux/Unix</span><span>Docker</span><span>REST APIs</span><span>Unreal Engine 5</span><span>Blender</span><span>Unity</span></p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="detail-panel" id="portfolio-panel" data-detail-panel="portfolio" aria-labelledby="portfolio-title">
+      <aside class="side-nav">
+        <h3 id="portfolio-title">Portfolio</h3>
+        <a href="#lab-app">Lab Data App</a>
+        <a href="#ai-project">AI Classification</a>
+        <a href="#cloud-api">Cloud APIs</a>
+        <a href="#simulation">Simulation</a>
+      </aside>
+      <div class="panel-content">
+        <section class="content-block">
+          <h3>Project Highlights</h3>
+          <p class="lead">These are starter portfolio entries based on your resume. When you send screenshots, repos, demos, or writeups, each one can become a deeper case study.</p>
+          <div class="project-list">
+            <article class="project" id="lab-app">
+              <div class="project-thumb">LAB</div>
+              <div>
+                <div class="project-head">
+                  <h4>Zebrafish Lab Data Platform</h4>
+                  <span class="meta">React + ASP.NET Core</span>
+                </div>
+                <p class="lead">Full stack XML processing and MariaDB workflow application for lab researchers, including validation, error handling, and data visualization support.</p>
+                <div class="project-tags"><span>React</span><span>C# APIs</span><span>MariaDB</span><span>Data workflows</span></div>
+              </div>
+            </article>
+            <article class="project" id="ai-project">
+              <div class="project-thumb">AI</div>
+              <div>
+                <div class="project-head">
+                  <h4>Zebrafish Phenotype Classification</h4>
+                  <span class="meta">96% F1 score</span>
+                </div>
+                <p class="lead">Deep learning pipeline using PyTorch, ResNet-18, transfer learning, image preprocessing, augmentation, and evaluation on 4,000+ labeled imaging samples.</p>
+                <div class="project-tags"><span>PyTorch</span><span>ResNet</span><span>Computer vision</span><span>Research data</span></div>
+              </div>
+            </article>
+            <article class="project" id="cloud-api">
+              <div class="project-thumb">API</div>
+              <div>
+                <div class="project-head">
+                  <h4>Tarpaulin Course Management APIs</h4>
+                  <span class="meta">Docker + JWT</span>
+                </div>
+                <p class="lead">Cloud development project with RESTful endpoints, containerized deployment, JWT authentication, and role-based authorization.</p>
+                <div class="project-tags"><span>REST APIs</span><span>Docker</span><span>Auth</span><span>Backend</span></div>
+              </div>
+            </article>
+            <article class="project" id="simulation">
+              <div class="project-thumb">SIM</div>
+              <div>
+                <div class="project-head">
+                  <h4>Dasher Blitz Driving Simulation</h4>
+                  <span class="meta">Unreal Engine 5</span>
+                </div>
+                <p class="lead">Vehicle simulation with collision avoidance, realistic physics, Blender assets, wheel animations, HUD systems, and customization features.</p>
+                <div class="project-tags"><span>Unreal</span><span>Blender</span><span>Blueprints</span><span>Simulation</span></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="detail-panel" id="future-panel" data-detail-panel="future" aria-labelledby="future-title">
+      <aside class="side-nav">
+        <h3 id="future-title">Future Space</h3>
+        <a href="#future-ideas">Ideas</a>
+      </aside>
+      <div class="panel-content">
+        <section class="content-block" id="future-ideas">
+          <h3>Open for the next idea</h3>
+          <div class="future-note">
+            <p>
+              This section is intentionally quiet for now. Later it could become a blog, a photo or design gallery,
+              a research notes page, selected coursework, awards, certifications, or a contact-focused section.
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-card");
+    const detailPanels = document.querySelectorAll("[data-detail-panel]");
+
+    function activatePanel(panelName) {
+      tabButtons.forEach((button) => {
+        const isActive = button.dataset.panel === panelName;
+        button.setAttribute("aria-expanded", String(isActive));
+      });
+
+      detailPanels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.detailPanel === panelName);
+      });
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activatePanel(button.dataset.panel);
+        document.getElementById(`${button.dataset.panel}-panel`).scrollIntoView({ block: "start", behavior: "smooth" });
+      });
+    });
+  </script>
 </body>
 </html>
