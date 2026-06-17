@@ -1,0 +1,115 @@
+.detail-panel {
+  display: none;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  min-height: 560px;
+}
+
+.detail-panel.is-active {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+.side-nav {
+  border-right: 1px solid var(--line);
+  background: #f6f7f3;
+  padding: 20px;
+}
+
+.side-nav h3 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+}
+
+.side-nav a {
+  display: block;
+  padding: 11px 0;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(101, 113, 107, 0.18);
+  font-size: 0.95rem;
+}
+
+.side-nav a:hover,
+.side-nav a:focus-visible {
+  color: var(--teal);
+  outline: none;
+}
+
+.panel-content {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.content-block {
+  padding-bottom: 36px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--line);
+}
+
+.content-block:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.content-block h3 {
+  margin: 0 0 14px;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  letter-spacing: 0;
+}
+
+.lead {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.timeline,
+.project-list,
+.skill-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.entry,
+.project,
+.skill-group,
+.future-note {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 18px;
+}
+
+.entry-head,
+.project-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.entry h4,
+.project h4,
+.skill-group h4 {
+  margin: 0;
+  font-size: 1.04rem;
+}
+
+.meta {
+  color: var(--teal);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+ul {
+  margin: 10px 0 0;
+  padding-left: 19px;
+  color: var(--muted);
+}
+
+li + li {
+  margin-top: 7px;
+}

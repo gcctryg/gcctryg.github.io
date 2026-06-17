@@ -1,0 +1,80 @@
+@media (max-width: 900px) {
+  :root {
+    --anchor-offset: 150px;
+  }
+
+  .site-banner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .banner-status,
+  .banner-contact {
+    justify-content: center;
+  }
+
+  .intro-grid,
+  .detail-panel.is-active {
+    grid-template-columns: 1fr;
+  }
+
+  .section-tabs,
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .side-nav {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .side-nav a {
+    display: inline-block;
+    margin-right: 18px;
+  }
+
+  .project {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --anchor-offset: 165px;
+  }
+
+  .site-shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .entry-head,
+  .project-head,
+  .visual-caption {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-banner {
+    margin-bottom: 22px;
+  }
+
+  .banner-contact {
+    font-size: 0.84rem;
+  }
+
+  .banner-status span,
+  .banner-contact a {
+    padding: 6px 8px;
+  }
+
+  .tab-card {
+    min-height: 180px;
+  }
+
+  .meta {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,61 @@
+.site-banner {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto minmax(260px, 1fr);
+  align-items: center;
+  gap: 18px;
+  min-height: 68px;
+  margin: 0 calc(50% - 50vw) 28px;
+  padding: 12px max(18px, calc((100vw - 1180px) / 2));
+  border-bottom: 1px solid rgba(223, 230, 223, 0.92);
+  background: rgba(251, 250, 247, 0.92);
+  box-shadow: 0 12px 34px rgba(28, 41, 36, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.banner-status,
+.banner-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.banner-status {
+  justify-content: flex-start;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.banner-status span,
+.banner-contact a {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 7px 10px;
+}
+
+.banner-name {
+  color: var(--ink);
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.banner-name:hover,
+.banner-name:focus-visible,
+.banner-contact a:hover,
+.banner-contact a:focus-visible {
+  color: var(--teal);
+  outline: none;
+}
+
+.banner-contact {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}

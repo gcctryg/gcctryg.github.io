@@ -1,0 +1,186 @@
+.section-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.tab-card {
+  --mx: 50%;
+  --my: 50%;
+  --tab-accent-a: rgba(29, 124, 118, 0.22);
+  --tab-accent-b: rgba(199, 103, 77, 0.18);
+  position: relative;
+  isolation: isolate;
+  min-height: 210px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  padding: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:
+    transform 220ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.tab-card:hover,
+.tab-card:focus-visible,
+.tab-card[aria-expanded="true"] {
+  border-color: var(--teal);
+  box-shadow: 0 18px 48px rgba(20, 96, 89, 0.13);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+.tab-card[data-panel="portfolio"] {
+  --tab-accent-a: rgba(29, 124, 118, 0.2);
+  --tab-accent-b: rgba(57, 119, 158, 0.22);
+  background: #f6fbfa;
+}
+
+.tab-card[data-panel="future"] {
+  --tab-accent-a: rgba(199, 103, 77, 0.2);
+  --tab-accent-b: rgba(106, 143, 73, 0.18);
+  background: #fff9f4;
+}
+
+.tab-card::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.tab-card:hover::before,
+.tab-card:focus-visible::before,
+.tab-card[aria-expanded="true"]::before {
+  opacity: 1;
+}
+
+.tab-reveal {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: 0;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.42), transparent 0 28%),
+    linear-gradient(135deg, var(--tab-accent-a), var(--tab-accent-b));
+  clip-path: circle(0 at var(--mx) var(--my));
+  transition:
+    clip-path 520ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 180ms ease;
+  pointer-events: none;
+}
+
+.tab-card:hover .tab-reveal,
+.tab-card:focus-visible .tab-reveal,
+.tab-card[aria-expanded="true"] .tab-reveal {
+  opacity: 1;
+  clip-path: circle(58% at var(--mx) var(--my));
+}
+
+.tab-ghost {
+  position: absolute;
+  right: -0.05em;
+  bottom: -0.32em;
+  z-index: -1;
+  color: rgba(29, 124, 118, 0.11);
+  font-size: clamp(9rem, 16vw, 15rem);
+  font-weight: 800;
+  line-height: 0.8;
+  pointer-events: none;
+  transition:
+    opacity 220ms ease,
+    transform 320ms ease,
+    color 220ms ease;
+}
+
+.tab-card:hover .tab-ghost,
+.tab-card:focus-visible .tab-ghost,
+.tab-card[aria-expanded="true"] .tab-ghost {
+  color: rgba(23, 32, 28, 0.08);
+  opacity: 0.45;
+  transform: translate3d(-0.03em, -0.03em, 0) scale(0.97);
+}
+
+.tab-content,
+.tab-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.tab-kicker {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tab-card strong {
+  display: block;
+  margin-top: 18px;
+  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  line-height: 1;
+  letter-spacing: 0;
+  transition: transform 220ms ease;
+}
+
+.tab-card p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  transition: transform 220ms ease, color 180ms ease;
+}
+
+.tab-card:hover strong,
+.tab-card:focus-visible strong,
+.tab-card[aria-expanded="true"] strong,
+.tab-card:hover p,
+.tab-card:focus-visible p,
+.tab-card[aria-expanded="true"] p {
+  transform: translateY(-4px);
+}
+
+.tab-card:hover p,
+.tab-card:focus-visible p,
+.tab-card[aria-expanded="true"] p {
+  color: var(--graphite);
+}
+
+.tab-arrow {
+  align-self: flex-end;
+  color: var(--coral);
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+
+.tab-card:hover .tab-arrow,
+.tab-card:focus-visible .tab-arrow,
+.tab-card[aria-expanded="true"] .tab-arrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-card,
+  .tab-card::before,
+  .tab-reveal,
+  .tab-ghost,
+  .tab-card strong,
+  .tab-card p,
+  .tab-arrow {
+    transition: none;
+  }
+}

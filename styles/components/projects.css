@@ -1,0 +1,76 @@
+.project {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.project-thumb {
+  min-height: 132px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(29, 124, 118, 0.86), rgba(39, 49, 47, 0.9)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 16px);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.project:nth-child(2) .project-thumb {
+  background:
+    linear-gradient(135deg, rgba(199, 103, 77, 0.9), rgba(57, 81, 68, 0.92)),
+    radial-gradient(circle at 65% 28%, rgba(255, 255, 255, 0.22), transparent 26%);
+}
+
+.project:nth-child(3) .project-thumb {
+  background:
+    linear-gradient(135deg, rgba(106, 143, 73, 0.9), rgba(31, 52, 75, 0.9)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent);
+}
+
+.project:nth-child(4) .project-thumb {
+  background:
+    linear-gradient(135deg, rgba(45, 79, 123, 0.9), rgba(29, 124, 118, 0.86)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 20px);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.project-tags span,
+.skill-group span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  color: var(--graphite);
+  background: #f8faf6;
+  padding: 5px 8px;
+  font-size: 0.82rem;
+}
+
+.skill-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skill-group p {
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.future-note {
+  max-width: 760px;
+  background: #fffaf6;
+}
+
+.future-note p {
+  margin: 0;
+  color: var(--muted);
+}
