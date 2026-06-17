@@ -12,7 +12,7 @@
   --tab-accent-b: rgba(199, 103, 77, 0.18);
   position: relative;
   isolation: isolate;
-  min-height: 210px;
+  min-height: 170px;
   border: 1px solid var(--line);
   background: var(--panel);
   color: var(--ink);
@@ -87,16 +87,16 @@
 .tab-card:focus-visible .tab-reveal,
 .tab-card[aria-expanded="true"] .tab-reveal {
   opacity: 1;
-  clip-path: circle(58% at var(--mx) var(--my));
+  clip-path: circle(34% at var(--mx) var(--my));
 }
 
 .tab-ghost {
   position: absolute;
   right: -0.05em;
-  bottom: -0.32em;
+  bottom: -0.18em;
   z-index: -1;
   color: rgba(29, 124, 118, 0.11);
-  font-size: clamp(9rem, 16vw, 15rem);
+  font-size: clamp(8.6rem, 14vw, 13.2rem);
   font-weight: 800;
   line-height: 0.8;
   pointer-events: none;
@@ -130,33 +130,19 @@
 
 .tab-card strong {
   display: block;
-  margin-top: 18px;
-  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  margin-top: 16px;
+  font-size: clamp(1.28rem, 2.2vw, 1.9rem);
+  font-weight: 800;
   line-height: 1;
   letter-spacing: 0;
+  text-transform: uppercase;
   transition: transform 220ms ease;
-}
-
-.tab-card p {
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 0.96rem;
-  transition: transform 220ms ease, color 180ms ease;
 }
 
 .tab-card:hover strong,
 .tab-card:focus-visible strong,
-.tab-card[aria-expanded="true"] strong,
-.tab-card:hover p,
-.tab-card:focus-visible p,
-.tab-card[aria-expanded="true"] p {
+.tab-card[aria-expanded="true"] strong {
   transform: translateY(-4px);
-}
-
-.tab-card:hover p,
-.tab-card:focus-visible p,
-.tab-card[aria-expanded="true"] p {
-  color: var(--graphite);
 }
 
 .tab-arrow {

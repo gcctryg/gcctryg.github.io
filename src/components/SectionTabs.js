@@ -6,7 +6,6 @@ export function SectionTabs(tabs) {
       <span class="tab-content">
         <span class="tab-kicker">${tab.number}</span>
         <strong>${tab.title}</strong>
-        <p>${tab.description}</p>
       </span>
       <span class="tab-arrow" aria-hidden="true">-&gt;</span>
     </button>
