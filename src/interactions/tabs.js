@@ -35,7 +35,7 @@ export function initTabs() {
 
     button.addEventListener("click", () => {
       activatePanel(button.dataset.panel, tabButtons, detailPanels);
-      scrollToElementWithOffset(document.getElementById(`${button.dataset.panel}-panel`));
+      scrollToElementWithOffset(button.closest(".section-tabs"));
     });
   });
 }

@@ -4,8 +4,9 @@ export function SectionTabs(tabs) {
       <span class="tab-reveal" aria-hidden="true"></span>
       <span class="tab-ghost" aria-hidden="true">${tab.title.charAt(0)}</span>
       <span class="tab-content">
-        <span class="tab-kicker">${tab.number}</span>
-        <strong>${tab.title}</strong>
+        <span class="tab-title-wrap">
+          <strong class="tab-title">${tab.title}</strong>
+        </span>
       </span>
       <span class="tab-arrow" aria-hidden="true">-&gt;</span>
     </button>
