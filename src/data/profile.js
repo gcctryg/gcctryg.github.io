@@ -5,6 +5,7 @@ export const profile = {
   email: "fengxu@oregonstate.edu",
   phone: "(541) 908-7324",
   phoneHref: "+15419087324",
+  githubUrl: "https://github.com/gcctryg",
   visaStatus: "F-1 OPT",
   heroImage: {
     src: "assets/portfolio-workbench.png",

@@ -33,21 +33,55 @@
 
 .banner-status span,
 .banner-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   border: 1px solid var(--line);
   background: var(--panel);
   padding: 7px 10px;
 }
 
+.banner-info-icon {
+  display: inline-grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  color: var(--teal);
+  flex: 0 0 auto;
+}
+
+.banner-info-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.banner-info-icon svg path,
+.banner-info-icon svg rect {
+  vector-effect: non-scaling-stroke;
+}
+
+.banner-contact a:last-child .banner-info-icon svg {
+  fill: currentColor;
+  stroke: none;
+}
+
 .banner-name {
+  display: inline-flex;
+  align-items: baseline;
   color: var(--ink);
-  font-size: clamp(1.18rem, 2vw, 1.55rem);
-  font-weight: 800;
+  font-size: clamp(1.32rem, 2.35vw, 1.85rem);
+  font-weight: 950;
   letter-spacing: 0;
   text-align: center;
   white-space: nowrap;
+  transform: skew(-7deg);
 }
 
-.banner-name:hover,
 .banner-name:focus-visible,
 .banner-contact a:hover,
 .banner-contact a:focus-visible {
@@ -55,7 +89,25 @@
   outline: none;
 }
 
+.banner-letter {
+  display: inline-block;
+  --wave: 0px;
+  color: var(--ink);
+  transform: translateY(var(--wave));
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.banner-letter.is-accent {
+  color: var(--coral);
+}
+
 .banner-contact {
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-letter {
+    transition: none;
+  }
 }
